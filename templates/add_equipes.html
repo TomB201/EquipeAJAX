@@ -1,0 +1,12 @@
+{% extends "index.html" %}
+{% block content %}
+    <h2>Ajouter une équipe !</h2>
+    <form method="POST" action="{% url "add" %}">
+    {% csrf_token %}
+    {{ form.as_p }}
+    <input type="submit", name="envoyer">
+    </form>
+    <br>
+    <br>
+    <a href="{% url "equipes" %}">Voir toutes les équipes</a>
+{% endblock %}

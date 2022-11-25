@@ -1,0 +1,19 @@
+{% extends "index.html" %}
+{% block content %}
+    <h2>Les équipes !</h2>
+    <table>
+    <tr>
+        {% for maillot in maillots %}
+
+            <tr>
+                <td>Nom : {{ maillot.nom }}</td>
+                <td>Pays : {{ maillot.pays }}</td>
+
+            </tr>
+        {% endfor %}
+
+    </tr>
+
+    </table>
+    <a href="{% url "add" %}">Ajouter une équipe</a>
+{% endblock %}
