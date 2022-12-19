@@ -3,11 +3,11 @@
     <h2>Les équipes !</h2>
     <table>
     <tr>
-        {% for maillot in maillots %}
+        {% for equipe in equipes %}
 
             <tr>
-                <td>Nom : {{ maillot.nom }}</td>
-                <td>Pays : {{ maillot.pays }}</td>
+                <td>Nom : {{ equipe.nom }}</td>
+                <td>Pays : {{ equipe.pays }}</td>
 
             </tr>
         {% endfor %}

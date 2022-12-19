@@ -7,7 +7,7 @@ def index(request):
 
 def equipe(request):
     equipes = Equipe.objects.all()
-    content = {"maillots": equipes}
+    content = {"equipes": equipes}
     return render(request, "show_equipes.html", content)
 
 
@@ -22,6 +22,6 @@ def add_equipe(request):
             return redirect("equipes")
     else:
         form = Form_addequipe()
-        content = {"form" : form}
+        content = {"form": form}
         return render(request, "add_equipes.html", content)
 
