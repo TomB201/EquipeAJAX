@@ -6,7 +6,7 @@
         {% for equipe in equipes %}
 
             <tr>
-                <td>Nom : {{ equipe.nom }}</td>
+                <td>Nom :<a href="#" onclick="go('{{ equipe.nom }}')"> {{ equipe.nom }}</a></td>
                 <td>Pays : {{ equipe.pays }}</td>
 
             </tr>
@@ -15,5 +15,23 @@
     </tr>
 
     </table>
+
     <a href="{% url "add" %}">Ajouter une équipe</a>
+    <script>
+
+      function go (nom) { // fonction de callback
+    var notification = document.getElementById("notification"); // var notification
+    if (!notification) { //condition si la var notification n'existe pas on la cree
+      notification = document.createElement("div"); // modification du DOM ajout du noeud + cree objet notification
+      notification.id = "notification";
+      document.body.appendChild(notification);
+    }
+    notification.innerHTML = "⚽ Allez " + nom + " ⚽";
+    notification.style.backgroundColor = "lightblue";
+    notification.style.padding = "10px";
+    notification.style.color = "black";
+
+}
+
+    </script>
 {% endblock %}

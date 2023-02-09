@@ -6,7 +6,26 @@
     {{ form.as_p }}
     <input type="submit", name="envoyer">
     </form>
+
     <br>
     <br>
     <a href="{% url "equipes" %}">Voir toutes les équipes</a>
+
+<script>
+  // tableau des pays disponibles
+  const pays = ['Allemagne', 'France', 'Italie', 'Espagne', 'Suisse', 'Angleterre']; //tableau des pays dispo
+
+  // selectionne le formulaire
+  const form = document.querySelector('form');
+
+  form.addEventListener('submit', function (event) {
+    const selectedPays = form.elements.pays.value; // recupere la valeur du pays
+
+    if (pays.indexOf(selectedPays) === -1) { // -1 indique que le pays n'est pas dans la liste sinon il renverra un index
+      alert('Pays pas ecore geré ! Revenez plus tard...');
+
+      event.preventDefault(); // annule envoie de form
+    }
+  });
+</script>
 {% endblock %}
