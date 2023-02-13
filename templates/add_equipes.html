@@ -18,7 +18,7 @@
   // selectionne le formulaire
   const form = document.querySelector('form');
 
-  form.addEventListener('submit', function (event) {
+  form.addEventListener('submit', function (event) { // permet de gerer le submit
     const selectedPays = form.elements.pays.value; // recupere la valeur du pays
 
     if (pays.indexOf(selectedPays) === -1) { // -1 indique que le pays n'est pas dans la liste sinon il renverra un index
