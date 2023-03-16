@@ -7,7 +7,7 @@
 
             <tr>
                 <td><a href="#" onclick="go('{{ equipe.nom }}')"> {{ equipe.nom }}</a></td>
-
+                <td><button id="{{ equipe.id }}" onclick="getDetails(this.id)">Voir plus...</button></td>
 
             </tr>
         {% endfor %}
@@ -31,6 +31,19 @@
     notification.style.padding = "10px";
     notification.style.color = "black"; }
 
+
+    function getDetails(id) {
+        var xhr = new XMLHttpRequest();
+        xhr.onreadystatechange = function() {
+            if (this.readyState === 4 && this.status === 200) {
+                var details = JSON.parse(this.responseText);
+                var detailsDiv = document.getElementById("details");
+                detailsDiv.innerHTML = "<h3>" + details.nom + "</h3><p>" + details.description + "</p>";
+            }
+        };
+        xhr.open("GET", "/equipes/details/" + id + "/");
+        xhr.send();
+        }
 
 
     </script>
