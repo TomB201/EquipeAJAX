@@ -6,8 +6,8 @@
         {% for equipe in equipes %}
 
             <tr>
-                <td>Nom :<a href="#" onclick="go('{{ equipe.nom }}')"> {{ equipe.nom }}</a></td>
-                <td>Pays : {{ equipe.pays }}</td>
+                <td><a href="#" onclick="go('{{ equipe.nom }}')"> {{ equipe.nom }}</a></td>
+
 
             </tr>
         {% endfor %}
@@ -15,8 +15,8 @@
     </tr>
 
     </table>
-
-    <a href="{% url "add" %}">Ajouter une équipe</a>
+    <br>
+    <button onclick="location.href='{% url "add" %}';" class="btn btn-primary">Ajouter une équipe</button>
     <script>
 
       function go (nom) { // fonction de callback
@@ -29,9 +29,12 @@
     notification.innerHTML = "⚽ Allez " + nom + " ⚽";
     notification.style.backgroundColor = "lightblue";
     notification.style.padding = "10px";
-    notification.style.color = "black";
+    notification.style.color = "black"; }
 
-}
+
 
     </script>
+
+
+
 {% endblock %}

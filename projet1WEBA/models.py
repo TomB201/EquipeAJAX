@@ -1,8 +1,12 @@
 from django.db import models
 
 class Equipe(models.Model):
-    nom= models.CharField(max_length=64, null=False)
-    pays= models.CharField(max_length=64, null=False)
+    nom = models.CharField(max_length=64, null=False)
+    pays = models.CharField(max_length=64, null=False)
+    ville = models.CharField(max_length=64, null=False)
+    couleurs = models.CharField(max_length=64, null=False)
+
+
 
 class Maillot(models.Model):
     couleur = models.CharField(max_length=64, null=False)
