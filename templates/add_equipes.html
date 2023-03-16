@@ -18,11 +18,11 @@
   // selectionne le formulaire
   const form = document.querySelector('form');
 
-  form.addEventListener('submit', function (event) { // permet de gerer le submit
+  form.addEventListener('submit', function (event) { // permet de gerer le submit callback fonction anonyme
     const selectedPays = form.elements.pays.value; // recupere la valeur du pays
 
     if (pays.indexOf(selectedPays) === -1) { // -1 indique que le pays n'est pas dans la liste sinon il renverra un index
-      alert('Pays pas ecore geré ! Revenez plus tard...');
+      alert('Pays pas encore geré ! Revenez plus tard...');
 
       event.preventDefault(); // annule envoie de form
     }
