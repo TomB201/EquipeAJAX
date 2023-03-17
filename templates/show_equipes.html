@@ -7,8 +7,8 @@
 
             <tr>
                 <td><a href="#" onclick="go('{{ equipe.nom }}')"> {{ equipe.nom }}</a></td>
-                <td><button id="{{ equipe.id }}" onclick="getDetails(this.id)">Voir plus...</button></td>
-
+                <td><button id="{{ equipe.id }}" onclick="getDetails(this.id, true)">Voir plus...</button></td>
+                <td><button id="{{ equipe.id }}" onclick="getDetails(this.id, false)">Voir plus (s)...</button></td>
             </tr>
         {% endfor %}
 
@@ -21,33 +21,34 @@
     <script>
 
       function go (nom) { // fonction de callback
-    var notification = document.getElementById("notification"); // var notification
-    if (!notification) { //condition si la var notification n'existe pas on la cree
-      notification = document.createElement("div"); // modification du DOM ajout du noeud + cree objet notification
-      notification.id = "notification";
-      document.body.appendChild(notification);
-    }
-    notification.innerHTML = "⚽ Allez " + nom + " ⚽";
-    notification.style.backgroundColor = "lightblue";
-    notification.style.padding = "10px";
-    notification.style.color = "black"; }
-
- function getDetails(id) {
-    var xhr = new XMLHttpRequest();
-    xhr.onreadystatechange = function() {
-        if (this.readyState == 4 && this.status == 200) {
-            var details = JSON.parse(this.responseText);
-            var table = "<table>";
-            for (var key in details) {
-                table += "<tr><td>" + key + "</td><td>" + details[key] + "</td></tr>";
-            }
-            table += "</table>";
-            document.getElementById("details").innerHTML = table;
+        var notification = document.getElementById("notification"); // var notification
+        if (!notification) { //condition si la var notification n'existe pas on la cree
+          notification = document.createElement("div"); // modification du DOM ajout du noeud + cree objet notification
+          notification.id = "notification";
+          document.body.appendChild(notification);
         }
-    };
-    xhr.open("GET", "/equipe/" + id + "/details/", true);
-    xhr.send();
-}
+        notification.innerHTML = "⚽ Allez " + nom + " ⚽";
+        notification.style.backgroundColor = "lightblue";
+        notification.style.padding = "10px";
+        notification.style.color = "black";
+      }
+
+      function getDetails(id, isAsync) {
+        var xhr = new XMLHttpRequest();
+        xhr.onreadystatechange = function() {
+            if (this.readyState == 4 && this.status == 200) {
+                var details = JSON.parse(this.responseText);
+                var table = "<table>";
+                for (var key in details) {
+                    table += "<tr><td>" + key + "</td><td>" + details[key] + "</td></tr>";
+                }
+                table += "</table>";
+                document.getElementById("details").innerHTML = table;
+            }
+        };
+        xhr.open("GET", "/equipe/" + id + "/details/", isAsync);
+        xhr.send();
+      }
 
     </script>
 {% endblock %}
