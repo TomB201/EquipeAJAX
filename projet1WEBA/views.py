@@ -1,3 +1,4 @@
+from django.http import JsonResponse
 from django.shortcuts import render, redirect
 from projet1WEBA.models import *
 from templates.forms import *
@@ -25,3 +26,12 @@ def add_equipe(request):
         content = {"form": form}
         return render(request, "add_equipes.html", content)
 
+def equipe_details(request, id):
+    equipe = Equipe.objects.get(id=id)
+    details = {
+        "nom": equipe.nom,
+        "pays": equipe.pays,
+        "ville": equipe.ville,
+        "couleurs": equipe.couleurs,
+    }
+    return JsonResponse(details)

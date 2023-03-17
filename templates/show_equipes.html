@@ -17,6 +17,7 @@
     </table>
     <br>
     <button onclick="location.href='{% url "add" %}';" class="btn btn-primary">Ajouter une équipe</button>
+    <div id="details"></div>
     <script>
 
       function go (nom) { // fonction de callback
@@ -31,23 +32,22 @@
     notification.style.padding = "10px";
     notification.style.color = "black"; }
 
-
-    function getDetails(id) {
-        var xhr = new XMLHttpRequest();
-        xhr.onreadystatechange = function() {
-            if (this.readyState === 4 && this.status === 200) {
-                var details = JSON.parse(this.responseText);
-                var detailsDiv = document.getElementById("details");
-                detailsDiv.innerHTML = "<h3>" + details.nom + "</h3><p>" + details.description + "</p>";
+ function getDetails(id) {
+    var xhr = new XMLHttpRequest();
+    xhr.onreadystatechange = function() {
+        if (this.readyState == 4 && this.status == 200) {
+            var details = JSON.parse(this.responseText);
+            var table = "<table>";
+            for (var key in details) {
+                table += "<tr><td>" + key + "</td><td>" + details[key] + "</td></tr>";
             }
-        };
-        xhr.open("GET", "/equipes/details/" + id + "/");
-        xhr.send();
+            table += "</table>";
+            document.getElementById("details").innerHTML = table;
         }
-
+    };
+    xhr.open("GET", "/equipe/" + id + "/details/", true);
+    xhr.send();
+}
 
     </script>
-
-
-
 {% endblock %}
